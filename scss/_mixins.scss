@@ -247,12 +247,6 @@
   @if $point == maxwidth {
     @media (max-width: $maxWidth) { @content; }
   }
-  @else if $point == macbook {
-    @media (max-width: 1260px) { @content; }
-  }
-  @else if $point == non-desktop {
-    @media (min-width: 1025px) { @content; }
-  }
   @else if $point == desktop {
     @media (max-width: 1024px) { @content; }
   }

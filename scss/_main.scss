@@ -3,6 +3,7 @@
 .hide { position:relative;}
 .ease,a,input[type="submit"],button { @include transition(all 0.5s ease); }
 .ease2 { @include transition(all 0.3s ease); }
+.ease-none { @include transition(none); }
 .loader { position:relative; overflow:hidden; background:#fff url('../images/page_template/loading.gif') no-repeat center; }
 .auto { max-width:$maxWidth; margin-left: auto; margin-right: auto; }
 #main-wrapper { }

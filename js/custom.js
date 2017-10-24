@@ -9,20 +9,14 @@ function get_biggest(elements){
 	return biggest_height;
 }
 
-var windowWidth = 0;
-var windowHeight = 0;
-var headerHeight = 0;
-var footerHeight = 0;
-var footerTop = 0;
-
 function resize() {
-	windowWidth = $(window).width();
-	windowHeight = $(window).height();
+	var windowWidth = $(window).width();
+	var windowHeight = $(window).height();
 
 	// STICKY FOOTER
-	headerHeight = $('header').outerHeight();
-	footerHeight = $('footer').outerHeight();
-	footerTop = (footerHeight) * -1
+	var headerHeight = $('header').outerHeight();
+	var footerHeight = $('footer').outerHeight();
+	var footerTop = (footerHeight) * -1
 	$('footer').css({marginTop: footerTop});
 	$('#main-wrapper').css({paddingBottom: footerHeight});
 
