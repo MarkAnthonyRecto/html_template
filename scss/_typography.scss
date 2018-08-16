@@ -12,9 +12,16 @@ h6 { font-size: 0.67em; }
 .bp-right { text-align:right; }
 .bp-justify { text-align:justify; }
 .bp-tt { text-transform:uppercase; }
-.par-small { font-size: $fontSmall; }
-.par-medium { @include responsive-font-size (12px, 14px, 640px, 1200px, 0px); }
-.par-large { @include responsive-font-size (13px, 16px, 640px, 1200px, 0px); }
-.par-xlarge { @include responsive-font-size (14px, 18px, 640px, 1200px, 0px); }
-.par-xxlarge { @include responsive-font-size (16px, 20px, 640px, 1200px, 0px); }
-.par-max { @include responsive-font-size (20px, 24px, 640px, 1200px, 0px); }
+.fz-12 { font-size: 12px; }
+.fz-14 { font-size: 14px; }
+.fz-16 { font-size: 16px; }
+.fz-18 { font-size: 18px; }
+.fz-20 { font-size: 20px; }
+.fz-24 { font-size: 24px; }
+
+@include breakpoint(phablet) {
+	.fz-16 { font-size: 14px; }
+	.fz-18 { font-size: 16px; }
+	.fz-20 { font-size: 18px; }
+	.fz-24 { font-size: 22px; }
+}

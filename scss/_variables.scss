@@ -5,7 +5,7 @@ $maxWidth   : 1024px; // can be use as max width of the container
 
 // for fonts
 $defaultFont: 'Arial', 'Helvetica', 'Calibri'; // default font families and error support for any html tags
-$fontA      : 'Arial';
+$fontA      : 'Arial', 'Helvetica', 'Calibri';
 
 // for font sizes
 $fontSmall  : 12px;
@@ -26,6 +26,3 @@ $spaceTwo   : 20px;
 $spaceThree : 30px;
 $spaceFour  : 40px;
 $spaceFive  : 50px;
-
-// for image sprite
-//$imgSprite: url('');

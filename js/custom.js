@@ -1,58 +1,75 @@
-//get all elements with class and get the biggest box
-function get_biggest(elements){
-	var biggest_height = 0;
-	for ( var i = 0; i < elements.length ; i++ ){
-		var element_height = $(elements[i]).outerHeight();
-		//compare the height, if bigger, assign to variable
-		if(element_height > biggest_height ) biggest_height = element_height;
+'use strict';
+var bp = {
+	width: 0,
+	height: 0,
+	init: function() {
+		// for mobile
+		if (Modernizr.touch) {
+			$('html').addClass('bp-touch');
+		}
+
+		bp.loader('init');
+		bp.resize();
+	},
+	ready: function() {
+		bp.resize();
+		// hide the preloader
+		bp.loader('close');
+	},
+	loader: function(state) {
+		var _loader = {
+			content: '',
+			init: function() {
+				_loader.content = '<div class="bp-preloader"><div class="spinner"><span class="s-dot s-dot1"></span><span class="s-dot s-dot2"></span></div></div>';
+				$('body').prepend(_loader.content);
+			},
+			close: function() {
+				$('.bp-preloader').fadeOut();
+			}
+		}
+
+		if(state == 'init') {
+			_loader.init();
+		} else if(state == 'close') {
+			_loader.close();
+		}
+	},
+	resize: function() {
+		var _resize = {
+			init: function() {
+				bp.width = $(window).outerWidth();
+				bp.height = $(window).outerHeight();
+
+				// STICKY FOOTER
+				var headerHeight = $('header').outerHeight(),
+				footerHeight = $('footer').outerHeight(),
+				footerTop = (footerHeight) * -1;
+				$('footer').css({marginTop: footerTop});
+				$('#main-wrapper').css({paddingBottom: footerHeight});
+
+				// for equal height
+				_resize.equalize($('.classname'));
+			},
+			equalize: function(target) {
+				$(target).css({minHeight: 0});
+				var _biggest = 0;
+				for ( var i = 0; i < target.length ; i++ ){
+					var element_height = $(target[i]).outerHeight();
+					if(element_height > _biggest ) _biggest = element_height;
+				}
+				$(target).css({minHeight: _biggest});
+				return _biggest;
+			}
+		}
+		_resize.init();
 	}
-	return biggest_height;
 }
-
-var windowWidth = 0, windowHeight = 0, headerHeight = 0, footerHeight = 0, footerTop = 0;
-function resize() {
-	windowWidth = $(window).width();
-	windowHeight = $(window).height();
-
-	// STICKY FOOTER
-	headerHeight = $('header').outerHeight();
-	footerHeight = $('footer').outerHeight();
-	footerTop = (footerHeight) * -1
-	$('footer').css({marginTop: footerTop});
-	$('#main-wrapper').css({paddingBottom: footerHeight});
-
-	// for vertically middle content
-	$('.bp-middle').each(function() {
-		var bpMiddleHeight = $(this).outerHeight() / 2 * - 1;
-		$(this).css({marginTop: bpMiddleHeight});
-	});
-
-	// for equalizer
-	$('.classname').css({minHeight: 0});
-	var ClassName = get_biggest($('.classname'));
-	$('.classname').css({minHeight: ClassName});
-}
-
-$(window).resize(function() {
-	resize();
-});
+bp.init();
 
 $(document).ready(function() {
-	if (Modernizr.touch) {
-		$('html').addClass('bp-touch');
-	}
-	
-	resize();
+	bp.ready();
 });
 
-$(window).load(function() {
-	resize();
-});
-
-// preloader once done
-Pace.on('done', function() {
-	// totally hide the preloader especially for IE
-	setTimeout(function() {
-		$('.pace-inactive').hide();
-	}, 500);
+$(window).resize(function() {
+	bp.resize();
 });

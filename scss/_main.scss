@@ -4,7 +4,6 @@
 .ease,a,input[type="submit"],button { @include transition(all 0.5s ease); }
 .ease2 { @include transition(all 0.3s ease); }
 .ease-none { @include transition(none); }
-.loader { position:relative; overflow:hidden; background:#fff url('../images/page_template/loading.gif') no-repeat center; }
 .auto { max-width:$maxWidth; margin-left: auto; margin-right: auto; }
 #main-wrapper { }
 .fl { float:left; }
@@ -57,7 +56,7 @@
 .pad-edge { padding-left: 15px; padding-right: 15px; }
 .bp-img {
   img { max-width: 100%; height: auto; }
-  &.wide img { width: 100%; }
+  &.wide img { display: block; width: 100%; }
 }
 .bp-nocurve { @include border-radius(0); }
 .bp-curve { @include border-radius(5px); }
@@ -66,16 +65,6 @@
 .bp-centralize { @include transform(translate3d(0, -50%, 0)); }
 .bp-centralize2 { @include transform(translate3d(-50%, 0, 0)); }
 .bp-centralize3 { @include transform(translate3d(-50%, -50%, 0)); }
-.bp-col { @extend .bp-box;
-	&.fl { padding-right: 10px; }
-	&.fr { padding-left: 10px; }
-	&.half { width: 50%; }
-	@include breakpoint(mobile) { float: none !important; display: block; width: auto;
-		&.fl { padding-right: 0; }
-		&.fr { padding-left: 0; }
-		&.half { width: auto; }
-	}
-}
 .no-margin { margin: 0; }
 .no-padding { padding: 0; }
 .pt1{padding-top:$spaceOne}
@@ -116,14 +105,11 @@
 	.mb4 { margin-bottom: $spaceThree; }
 	.mb5 { margin-bottom: $spaceFour; }
 }
-.preloader { position:fixed; width:100%; height:100%; overflow:hidden; }
+.bp-preloader { z-index: 9999; position:fixed; top: 0; left: 0; width:100%; height:100%; background-color: $coWhite; overflow:hidden; }
 .spinner { position: absolute; width:80px; height:80px; top: 50%; left: 50%; margin-left:-40px; margin-top:-40px; @include animation(rotatee 2.0s infinite linear); }
 .s-dot { display: inline-block; position: absolute; width:60%; height:60%;  top: 0; background-color:$coBlack; @include border-radius(100%); @include animation(bouncee 2.0s infinite ease-in-out); }
 .s-dot2 { top: auto; bottom: 0px; @include animation-delay( -1.0s); }
 @include keyframes(rotatee) { 100% { @include transform(rotate(360deg)); } }
 @include keyframes(bouncee) { 0%, 100% { @include transform(scale(0.0)); } 50% { @include transform(scale(1.0)); } }
-.explorer .preloader { background:#fff url('../images/page_template/loading.gif') no-repeat center; }
-.explorer .preloader .spinner { display:none; }
-// this is area is for reserved class
 
 // you can include here the rest of your class name eg. home page
